@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="admin" namespace="/admin" extends="mydefault">
+		
+		<action name="login" class="action.AdminAction" method="login">
+			<result>/admin_main.jsp</result>
+		</action>
+
+		
+		<action name="exit" class="action.AdminAction" method="exit"></action>
+
+		
+		<action name="createAdmin" class="action.AdminAction" method="createAdmin">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/addadmin.jsp</result>
+			<result name="input">/admin/addadmin.jsp</result>
+		</action>
+
+		
+		<action name="addAdmin" class="action.AdminAction" method="addAdmin">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">createAdmin</result>
+			<result name="input" type="redirectAction">createAdmin</result>
+		</action>
+
+		
+		<action name="deleteAdmin" class="action.AdminAction" method="deleteAdmin">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">getAllAdmin</result>
+			<result name="input" type="redirectAction">getAllAdmin</result>
+		</action>
+
+		
+		<action name="getAllAdmin" class="action.AdminAction" method="getAllAdmin">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/listadmin.jsp</result>
+			<result name="input">/admin/listadmin.jsp</result>
+		</action>
+
+	</package>
+	
+	<package name="article" namespace="/article" extends="mydefault">
+		
+		<action name="createArticle" class="action.ArticleAction"
+			method="createArticle">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/addarticle.jsp</result>
+			<result name="input">/admin/addarticle.jsp</result>
+		</action>
+
+		
+		<action name="addArticle" class="action.ArticleAction" method="addArticle">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">createArticle</result>
+			<result name="input" type="redirectAction">createArticle</result>
+		</action>
+
+		
+		<action name="updateArticle" class="action.ArticleAction"
+			method="updateArticle">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">getAllArticle</result>
+			<result name="input" type="redirectAction">getAllArticle</result>
+		</action>
+
+		
+		<action name="deleteArticle" class="action.ArticleAction"
+			method="deleteArticle">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">getAllArticle</result>
+			<result name="input" type="redirectAction">getAllArticle</result>
+		</action>
+
+	
+		<action name="getAllArticle" class="action.ArticleAction"
+			method="getAllArticle">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/listarticle.jsp</result>
+			<result name="input">/admin/listarticle.jsp</result>
+		</action>
+
+		
+		<action name="getArticleById" class="action.ArticleAction"
+			method="getArticleById">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/editarticle.jsp</result>
+			<result name="input" type="redirectAction">getAllArticle</result>
+		</action>
+
+	</package>
+	
+	<package name="books" namespace="/books" extends="mydefault">
+		
+		<action name="createBooks" class="action.BooksAction" method="createBooks">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/addbooks.jsp</result>
+			<result name="input">/admin/addbooks.jsp</result>
+		</action>
+
+	
+		<action name="addBooks" class="action.BooksAction" method="addBooks">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">createBooks</result>
+			<result name="input" type="redirectAction">createBooks</result>
+		</action>
+
+		
+		<action name="updateBooks" class="action.BooksAction" method="updateBooks">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">getAllBooks</result>
+			<result name="input" type="redirectAction">getAllBooks</result>
+		</action>
+
+	
+		<action name="deleteBooks" class="action.BooksAction" method="deleteBooks">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">getAllBooks</result>
+			<result name="input" type="redirectAction">getAllBooks</result>
+		</action>
+
+		
+		<action name="getAllBooks" class="action.BooksAction" method="getAllBooks">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/listbooks.jsp</result>
+			<result name="input">/admin/listbooks.jsp</result>
+		</action>
+
+		
+		<action name="getBooksById" class="action.BooksAction" method="getBooksById">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/editbooks.jsp</result>
+			<result name="input" type="redirectAction">getAllBooks</result>
+		</action>
+
+	</package>
+	
+	<package name="orders" namespace="/orders" extends="mydefault">
+		
+		<action name="deleteOrders" class="action.OrdersAction" method="deleteOrders">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">getAllOrders</result>
+			<result name="input" type="redirectAction">getAllOrders</result>
+		</action>
+
+		
+		<action name="getAllOrders" class="action.OrdersAction" method="getAllOrders">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/listorders.jsp</result>
+			<result name="input">/admin/listorders.jsp</result>
+		</action>
+	</package>
+	
+	<package name="sorts" namespace="/sorts" extends="mydefault">
+		
+		<action name="createSorts" class="action.SortsAction" method="createSorts">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/addsorts.jsp</result>
+			<result name="input">/admin/addsorts.jsp</result>
+		</action>
+
+		
+		<action name="addSorts" class="action.SortsAction" method="addSorts">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">createSorts</result>
+			<result name="input" type="redirectAction">createSorts</result>
+		</action>
+
+		
+		<action name="updateSorts" class="action.SortsAction" method="updateSorts">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">getAllSorts</result>
+			<result name="input" type="redirectAction">getAllSorts</result>
+		</action>
+
+	
+		<action name="deleteSorts" class="action.SortsAction" method="deleteSorts">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">getAllSorts</result>
+			<result name="input" type="redirectAction">getAllSorts</result>
+		</action>
+
+		
+		<action name="getAllSorts" class="action.SortsAction" method="getAllSorts">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/listsorts.jsp</result>
+			<result name="input">/admin/listsorts.jsp</result>
+		</action>
+
+	
+		<action name="getSortsById" class="action.SortsAction" method="getSortsById">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/editsorts.jsp</result>
+			<result name="input" type="redirectAction">getAllSorts</result>
+		</action>
+
+	</package>
+	
+	<package name="users" namespace="/users" extends="mydefault">
+	
+		<action name="deleteUsers" class="action.UsersAction" method="deleteUsers">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result type="redirectAction">getAllUsers</result>
+			<result name="input" type="redirectAction">getAllUsers</result>
+		</action>
+
+	
+		<action name="getAllUsers" class="action.UsersAction" method="getAllUsers">
+			<interceptor-ref name="adminStack"></interceptor-ref>
+			<result>/admin/listusers.jsp</result>
+			<result name="input">/admin/listusers.jsp</result>
+		</action>
+	</package>
+</struts> 
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="index" namespace="/index" extends="mydefault">
+		<action name="index" class="action.IndexAction" method="index">
+			<result>/users/index.jsp</result>
+			
+		</action>
+		<action name="cate" class="action.IndexAction" method="cate">
+			<result>/users/list.jsp</result>
+		</action>
+		<action name="special" class="action.IndexAction" method="special">
+			<result>/users/list.jsp</result>
+		</action>
+		<action name="recommend" class="action.IndexAction" method="recommend">
+			<result>/users/list.jsp</result>
+		</action>
+		<action name="query" class="action.IndexAction" method="query">
+			<result>/users/list.jsp</result>
+		</action>
+		<action name="all" class="action.IndexAction" method="all">
+			<result>/users/list.jsp</result>
+		</action>
+		<action name="detail" class="action.IndexAction" method="detail">
+			<result>/users/detail.jsp</result>
+		</action>
+
+		<action name="article" class="action.IndexAction" method="article">
+			<result>/users/article.jsp</result>
+		</action>
+		<action name="read" class="action.IndexAction" method="read">
+			<result>/users/read.jsp</result>
+		</action>
+
+
+		<action name="preLogin" class="action.IndexAction" method="preLogin">
+			<result>/users/login.jsp</result>
+		</action>
+		<action name="login" class="action.IndexAction" method="login">
+			<result name="input" type="chain">preLogin</result>
+			<result>/index.jsp</result>
+		</action>
+
+		<action name="preRegist" class="action.IndexAction" method="preRegist">
+			<result>/users/register.jsp</result>
+		</action>
+		<action name="regist" class="action.IndexAction" method="regist">
+			<result name="success" type="chain">preLogin</result>
+			<result name="input" type="chain">preRegist</result>
+		</action>
+
+		<action name="exit" class="action.IndexAction" method="exit">
+			<result name="success" type="chain">index</result>
+		</action>
+
+		<action name="usercenter" class="action.IndexAction" method="usercenter">
+			<result>/users/usercenter.jsp</result>
+			<interceptor-ref name="usersStack"></interceptor-ref>
+		</action>
+
+		<action name="addcart" class="action.IndexAction" method="addcart">
+			<result type="chain">showcart</result>
+			<interceptor-ref name="usersStack"></interceptor-ref>
+		</action>
+
+		<action name="showcart" class="action.IndexAction" method="showcart">
+			<result>/users/cart.jsp</result>
+			<interceptor-ref name="usersStack"></interceptor-ref>
+		</action>
+
+		<action name="deletecart" class="action.IndexAction" method="deletecart">
+			<result type="chain">showcart</result>
+
+			<interceptor-ref name="usersStack"></interceptor-ref>
+		</action>
+
+		<action name="preCheckout" class="action.IndexAction" method="preCheckout">
+			<result>/users/checkout.jsp</result>
+			<result name="input" type="chain">showcart</result>
+
+			<interceptor-ref name="usersStack"></interceptor-ref>
+		</action>
+
+		<action name="checkout" class="action.IndexAction" method="checkout">
+			<result type="chain">showorder</result>
+			<interceptor-ref name="usersStack"></interceptor-ref>
+		</action>
+
+		<action name="showorder" class="action.IndexAction" method="showorder">
+			<result>/users/orderlist.jsp</result>
+
+			<interceptor-ref name="usersStack"></interceptor-ref>
+		</action>
+
+		<action name="orderdetail" class="action.IndexAction" method="orderdetail">
+			<result>/users/orderdetail.jsp</result>
+
+			<interceptor-ref name="usersStack"></interceptor-ref>
+		</action>
+
+	</package>
+</struts> 
+

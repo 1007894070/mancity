@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.custom.i18n.resources" value="app" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<constant name="struts.multipart.saveDir" value="c:/temp" />
+	<constant name="struts.multipart.maxSize" value="20971520" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	
+	<package name="mydefault" namespace="/mydefault" extends="struts-default">
+		<interceptors>
+			<interceptor name="adminInterceptor" class="interceptor.AdminInterceptor"></interceptor>
+			<interceptor name="usersInterceptor" class="interceptor.UsersInterceptor"></interceptor>
+			<interceptor-stack name="adminStack">
+				<interceptor-ref name="adminInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="usersStack">
+				<interceptor-ref name="usersInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="error">/error.jsp</result>
+			<result name="noLogin">/admin_login.jsp</result>
+			<result name="usernoLogin">/users/login.jsp</result>
+		</global-results>
+	</package>
+
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="Change" class="action.LanguageAction" method="ChangeLanguage">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>/index.jsp</result>
+		</action>
+	</package>
+
+
+	<include file="conf/admin.xml"></include>
+	<include file="conf/users.xml"></include>
+
+</struts>
+
